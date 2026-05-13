@@ -1,7 +1,4 @@
-# Školní knihovna
+# 🎸 Guitar Library
 
-Tento projekt je součástí výukového materiálu pro výuku programování v jazyce Python a využití frameworku Django.
-Cílem projektu je vytvořit webovou aplikaci pro správu školní knihovny.
-
-## Instalace
-## Použití
+školní projekt s jednoduchou Django aplikací pro správu kytarové knihovny.
+Můžete přidávat, upravovat a mazat kytary přes administraci a používat vlastní typy jako Classical, Electric, Acoustic, Electroacoustic a Bass guitar.
