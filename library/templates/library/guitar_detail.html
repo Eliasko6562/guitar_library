@@ -1,0 +1,27 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="item-content" style="padding: 1.5rem;">
+        <h2>{{ guitar.name }}</h2>
+        <p class="meta">
+            Brand: {% if guitar.brand %}{{ guitar.brand.name }}{% else %}Unknown{% endif %}
+            · Type: {% if guitar.guitar_type %}{{ guitar.guitar_type.name }}{% else %}Unknown{% endif %}
+        </p>
+    </div>
+    {% if guitar.image %}
+        <img src="{{ guitar.image.url }}" alt="{{ guitar.name }}" style="width:100%; max-height:420px; height:auto; object-fit:contain; display:block;" />
+    {% endif %}
+    <div class="item-content">
+        {% if guitar.description %}
+            <h3>Description</h3>
+            <p>{{ guitar.description }}</p>
+        {% endif %}
+        {% if guitar.price %}
+            <p class="meta">Price: {{ guitar.price }}</p>
+        {% endif %}
+        <p class="meta">Last updated: {{ guitar.updated_at|date:'j M Y' }}</p>
+        <a class="button" href="{% url 'guitar-list' %}">Back to collection</a>
+    </div>
+</div>
+{% endblock %}

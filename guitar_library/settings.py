@@ -121,3 +121,11 @@ STATIC_URL = 'static/'
 # Media files uploaded by users
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+UNFOLD = {
+    "SITE_TITLE": "Administration",
+    "SITE_HEADER": "Library Dashboard",
+    "SITE_SYMBOL": "home",
+    "SHOW_HISTORY": True,
+    "SHOW_VIEW_ON_SITE": True,
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Library</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f1eb; color: #2d2a26; margin: 0; padding: 0; }
+        header { background: #2b3a42; color: #f1f1e8; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        header h1 { margin: 0; font-size: 1.8rem; }
+        header p { margin: 0.4rem 0 0; color: #c5c4b8; }
+        header .admin-link { margin-left: auto; }
+        header .admin-link .button { padding: 0.7rem 1rem; font-size: 0.95rem; }
+        main { max-width: 1400px; margin: 2rem auto; padding: 0 1rem; }
+        .card { background: #fff; border: 1px solid #d9d5ce; border-radius: 14px; box-shadow: 0 8px 25px rgba(45, 42, 38, 0.08); overflow: hidden; }
+        a { color: #2b3a42; text-decoration: none; }
+        a:hover { color: #536f78; }
+        .list-layout { display: grid; grid-template-columns: 1fr minmax(280px, 320px); gap: 1.5rem; align-items: start; }
+        .sidebar { position: sticky; top: 1.5rem; align-self: start; }
+        .sidebar .card { padding: 1.2rem; }
+        .sidebar h3 { margin-top: 0; }
+        .sidebar .filter-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.8rem; }
+        .grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .item { border: 1px solid #ded8cf; border-radius: 12px; overflow: hidden; background: #fff; }
+        .item img { width: 100%; max-height: 220px; height: auto; object-fit: contain; background: #e2dcd3; display: block; }
+        .item-content { padding: 1rem; }
+        .item-content h2 { margin: 0 0 0.6rem; font-size: 1.2rem; }
+        .item-content p { margin: 0.4rem 0; line-height: 1.55; }
+        .meta { color: #6c6a62; font-size: 0.95rem; }
+        .filter-row { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1rem; }
+        .filter-pill { display: inline-flex; padding: 0.55rem 0.85rem; background: #e9e3d9; color: #2d2a26; border-radius: 999px; border: 1px solid transparent; font-size: 0.95rem; }
+        .filter-pill:hover { background: #d4cbc0; }
+        .filter-pill.active { background: #28556a; color: #fff; border-color: #1c4350; }
+        .button { display: inline-block; margin-top: 1rem; padding: 0.7rem 1rem; background: #28556a; color: #fff; border-radius: 999px; }
+        .button:hover { background: #1c4350; }
+        footer { margin: 3rem 0 1rem; text-align: center; color: #7b7a72; font-size: 0.95rem; }
+        @media (max-width: 1100px) {
+            .list-layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 760px) {
+            main { padding: 0 0.8rem; }
+            .grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; align-items: flex-start; }
+            header .admin-link { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>Guitar Library</h1>
+            <p>Browse guitars in a simple library.</p>
+        </div>
+        <div class="admin-link">
+            <a class="button" href="{% url 'admin:index' %}">Admin login</a>
+        </div>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>Eliáš Constantine · 2026</footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+<div class="list-layout" style="margin-top: 1.5rem;">
+    <section class="content">
+        {% if guitars %}
+        <div class="grid" style="margin-top: 1.5rem;">
+            {% for guitar in guitars %}
+            <article class="item">
+                {% if guitar.image %}
+                    <img src="{{ guitar.image.url }}" alt="{{ guitar.name }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/640x360?text=Guitar" alt="No image">
+                {% endif %}
+                <div class="item-content">
+                    <h2><a href="{% url 'guitar-detail' guitar.pk %}">{{ guitar.name }}</a></h2>
+                    <p class="meta">
+                        Brand: {% if guitar.brand %}{{ guitar.brand.name }}{% else %}Unknown{% endif %}
+                        · Type: {% if guitar.guitar_type %}{{ guitar.guitar_type.name }}{% else %}Unknown{% endif %}
+                    </p>
+                    <p>{{ guitar.description|truncatechars:110 }}</p>
+                    <a class="button" href="{% url 'guitar-detail' guitar.pk %}">View details</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="card" style="padding: 1.5rem;">
+            <p>No guitars available yet. Add a few in the admin panel.</p>
+        </div>
+        {% endif %}
+    </section>
+    <aside class="sidebar">
+        <div class="card">
+            <h3>Filter by brand</h3>
+            <div class="filter-row">
+                <a class="filter-pill {% if not selected_brand %}active{% endif %}" href="{% url 'guitar-list' %}{% if selected_type %}?type={{ selected_type }}{% endif %}">All</a>
+                {% for brand in brands %}
+                    <a class="filter-pill {% if brand.pk|stringformat:'s' == selected_brand %}active{% endif %}" href="{% url 'guitar-list' %}?brand={{ brand.pk }}{% if selected_type %}&type={{ selected_type }}{% endif %}">{{ brand.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card" style="margin-top:1rem;">
+            <h3>Filter by type</h3>
+            <div class="filter-row">
+                <a class="filter-pill {% if not selected_type %}active{% endif %}" href="{% url 'guitar-list' %}{% if selected_brand %}?brand={{ selected_brand }}{% endif %}">All</a>
+                {% for type in types %}
+                    <a class="filter-pill {% if type.pk|stringformat:'s' == selected_type %}active{% endif %}" href="{% url 'guitar-list' %}?type={{ type.pk }}{% if selected_brand %}&brand={{ selected_brand }}{% endif %}">{{ type.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="card" style="margin-top:1rem; padding:1rem; text-align:center;">
+            <a class="button" href="{% url 'guitar-list' %}" style="background:#7b7a72;">Reset filters</a>
+        </div>
+    </aside>
+</div>
+{% endblock %}
